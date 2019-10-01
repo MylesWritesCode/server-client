@@ -6,7 +6,6 @@ client-side frontend for users. In total, three servers will be running:
 3. Angular server (client for frontend)
 
 # Server Instructions
-* * *
 ### Requirements
 - Python3 (3.7.3 used in development)
 - pymongo
@@ -32,7 +31,6 @@ server should be running.
 
 
 # Frontend Instructions
-* * *
 ### Requirements
 - Angular 7
 * * *
