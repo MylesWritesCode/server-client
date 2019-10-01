@@ -165,7 +165,35 @@ def delete(symbol = ""):
 
     return bottle.HTTPResponse(status = status, body = get_json(res))
 
-# def get_all_stocks():
+@app.route("/stocks/api/v1.0/allStocks", method="GET")
+def get_all_stocks():
+    """
+    OPTIMIZATION:
+    Get all stocks within the db, return as large JSON array. An aside, this
+    will probably become a huge return, so it may be better to paginate this.
+    
+    @params: None
+
+    @return: Array of all stocks in collection.
+    """
+    status = 200
+    try:
+        # We're sure to get a list from the JSON request, which will be an
+        # array of all the stocks that we need to look through.
+        res = {}
+        stocks = []
+        for doc in api.read_document({}):
+            stocks.append(doc)
+
+        res = { "Stocks": stocks }
+        
+    except Exception as e:
+        status = 404
+        res = { "Error: ": e }
+        
+    return bottle.HTTPResponse(status = status, body = get_json(res))
+
+    
 
 @app.route("/stocks/api/v1.0/stockReport", method="POST")
 def stock_report():
