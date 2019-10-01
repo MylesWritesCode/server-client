@@ -1,0 +1,29 @@
+.sidebar {
+  display: flex;
+  background-color: #3d3d42;
+  color: white;
+  height: 100%;
+  width: 250px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.sidebar a {
+  display: flex;
+  color: white;
+  height: 60px;
+  flex: 0 1 calc(100% - 1.5rem);
+  align-items: center;
+  border-bottom: 1px solid rgb(95, 75, 122);
+  justify-content: flex-end;
+  padding-right: 1.5rem;
+  font-family: "Montserrat";
+  letter-spacing: 1.5px;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background-color: rgb(95, 75, 122);
+}

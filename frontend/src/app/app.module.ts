@@ -4,15 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { SharedModule } from '@shared/shared.module';
+import { AllStocksComponent } from './stocks/all-stocks/all-stocks.component';
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [ AppComponent, AllStocksComponent, ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
+
 export class AppModule { }
