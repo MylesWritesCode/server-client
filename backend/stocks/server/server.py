@@ -1,7 +1,7 @@
 import json
 from bson import json_util
 import bottle
-from bottle import route, run, request, error, response, Bottle
+from bottle import hook, route, run, request, error, response, Bottle
 from datetime import datetime
 
 import sys, os
@@ -9,8 +9,29 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from api import api
 
+# OPTIMIZATION: Enable CORS because we're running the server off the same
+#               computer as the Angular server. In production, the DB would be
+#               on a different instance than the client server.
+_allow_origin = '*'
+_allow_methods = 'PUT, GET, POST, DELETE, OPTIONS'
+_allow_headers = 'Authorization, Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
 print("Server is running...\n")
-app = Bottle()
+# app = Bottle()
+app = bottle.app()
+
+@bottle.hook('after_request')
+def enable_cors():
+    # Add headers to responses to enable CORS
+    response.headers['Access-Control-Allow-Origin'] = _allow_origin
+    response.headers['Access-Control-Allow-Methods'] = _allow_methods
+    response.headers['Access-Control-Allow-Headers'] = _allow_headers
+
+def set_headers(response):
+    response.set_header('Access-Control-Allow-Origin', _allow_origin)
+    response.set_header('Access-Control-Allow-Methods', _allow_methods)
+    response.set_header('Access-Control-Allow-Headers', _allow_headers)
+    return response
 
 # Helper to print errors:
 def print_error(e):
@@ -165,7 +186,7 @@ def delete(symbol = ""):
 
     return bottle.HTTPResponse(status = status, body = get_json(res))
 
-@app.route("/stocks/api/v1.0/allStocks", method="GET")
+@app.route("/stocks/api/v1.0/allStocks", method=["OPTIONS", "GET"])
 def get_all_stocks():
     """
     OPTIMIZATION:
@@ -180,18 +201,28 @@ def get_all_stocks():
     try:
         # We're sure to get a list from the JSON request, which will be an
         # array of all the stocks that we need to look through.
-        res = {}
+        data = {}
         stocks = []
         for doc in api.read_document({}):
             stocks.append(doc)
 
-        res = { "Stocks": stocks }
+        data = { "Stocks": stocks }
         
     except Exception as e:
         status = 404
-        res = { "Error: ": e }
-        
-    return bottle.HTTPResponse(status = status, body = get_json(res))
+        data = { "Error: ": e }
+
+    # So, this would work if I was just sending a JSON response. The problem is
+    # I want to send an HTTPResponse. I can't find a better way to do this, so
+    # I'll probably wrap setting headers in some utility function.
+
+    # NOTE: Using @hook('after_request) doesn't seem to work unless, as
+    #       mentioned above, I'm sending just a straight JSON response back.
+
+    # return get_json(data)
+    
+    res = bottle.HTTPResponse(status = status, body = get_json(data))
+    return set_headers(res)
 
     
 
@@ -207,6 +238,7 @@ def stock_report():
     @h_resp: 200 OK, 404 Not Found
     """
     status = 200
+
     try:
         # We're sure to get a list from the JSON request, which will be an
         # array of all the stocks that we need to look through.
@@ -226,8 +258,8 @@ def stock_report():
     except Exception as e:
         status = 404
         res = { "Error: ": e }
-        
-    return bottle.HTTPResponse(status = status, body = get_json(res))
+    
+    return set_headers(bottle.HTTPResponse(status = status, body = get_json(res)))
 
 
 @app.route("/stocks/api/v1.0/industryReport/<industry>", method="GET")
