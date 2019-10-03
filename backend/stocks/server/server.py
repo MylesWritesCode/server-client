@@ -244,7 +244,7 @@ def stock_report():
         # array of all the stocks that we need to look through.
         req = request.json["list"]
         
-        res = {}
+        data = {}
         stocks = []
 
         for stock in req:
@@ -253,13 +253,14 @@ def stock_report():
                 # Let's append every single doc in the cursor.
                 stocks.append(doc)
             
-        res = { "Stocks": stocks }
+        data = { "Stocks": stocks }
     
     except Exception as e:
         status = 404
-        res = { "Error: ": e }
+        data = { "Error: ": e }
     
-    return set_headers(bottle.HTTPResponse(status = status, body = get_json(res)))
+    res = bottle.HTTPResponse(status = status, body = get_json(data))
+    return set_headers(res)
 
 
 @app.route("/stocks/api/v1.0/industryReport/<industry>", method="GET")
