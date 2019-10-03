@@ -10,6 +10,7 @@ import { DataService } from '@app/services/data.service';
 
 // Modules
 import { SharedModule } from '@shared/shared.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Components
 import { AllStocksComponent } from './stocks/all-stocks/all-stocks.component';
@@ -20,7 +21,8 @@ import { AllStocksComponent } from './stocks/all-stocks/all-stocks.component';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    InfiniteScrollModule
   ],
   providers: [ DataService ],
   bootstrap: [ AppComponent ]

@@ -1,68 +1,70 @@
 <h2 class='page-header'>All Stocks</h2>
-<a class='stock'
-   *ngFor="let stock of stocks"
-   (click)="show('show_' + stock.Ticker)">
-  <h3>{{ stock.Ticker }}</h3>
-  <p>{{ stock.Sector }}</p>
-  <div class='hidden' *ngIf="selectedStock == 'show_' + stock.Ticker">
-    <div class='break'></div>
-    <hr>
-
-    <div class='section'>
-      <h4>General Information</h4>
+<div class="results" infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()"
+     [infiniteScrollDisabled]="isFullListDisplayed"
+     [scrollWindow]="false">
+  <a class='stock'
+    *ngFor="let stock of stocks"
+    (click)="show('show_' + stock.Ticker)">
+    <h3>{{ stock.Ticker }}</h3>
+    <p>{{ stock.Sector }}</p>
+    <div class='hidden' *ngIf="selectedStock == 'show_' + stock.Ticker">
       <div class='break'></div>
-      <div class='metric'>
-        <h5>Country</h5>
-        <p>{{ stock.Country }}</p>
+      <hr>
+
+      <div class='section'>
+        <h4>General Information</h4>
+        <div class='break'></div>
+        <div class='metric'>
+          <h5>Country</h5>
+          <p>{{ stock.Country }}</p>
+        </div>
+        <div class='metric'>
+          <h5>Industry</h5>
+          <p>{{ stock.Industry }}</p>
+        </div>
+        <div class='metric'>
+          <h5>Company</h5>
+          <p>{{ stock.Company }}</p>
+        </div>
       </div>
-      <div class='metric'>
-        <h5>Industry</h5>
-        <p>{{ stock.Industry }}</p>
+
+      <div class='section' style="background-color: aliceblue">
+        <h4>Perfomance</h4>
+        <div class='break'></div>
+        <div class='metric'>
+          <h5>YTD</h5>
+          <p>{{ stock["Performance (YTD)"] }}</p>
+        </div>
+        <div class='metric'>
+          <h5>Week</h5>
+          <p>{{ stock["Performance (Week)"] }}</p>
+        </div>
+        <div class='metric'>
+          <h5>Quarter</h5>
+          <p>{{ stock["Performance (Quarter)"] }}</p>
+        </div>
       </div>
-      <div class='metric'>
-        <h5>Company</h5>
-        <p>{{ stock.Company }}</p>
+
+      <div class='section'>
+        <h4>50-day</h4>
+        <div class='break'></div>
+        <div class='metric'>
+          <h5>Low</h5>
+          <p>{{ stock["50-Day Low"] }}</p>
+        </div>
+        <div class='metric'>
+          <h5>High</h5>
+          <p>{{ stock["50-Day High"] }}</p>
+        </div>
+        <div class='metric'>
+          <h5>SMA</h5>
+          <p>{{ stock["50-Day Simple Moving Average"] }}</p>
+        </div>
       </div>
+
     </div>
-
-    <div class='section' style="background-color: aliceblue">
-      <h4>Perfomance</h4>
-      <div class='break'></div>
-      <div class='metric'>
-        <h5>YTD</h5>
-        <p>{{ stock["Performance (YTD)"] }}</p>
-      </div>
-      <div class='metric'>
-        <h5>Week</h5>
-        <p>{{ stock["Performance (Week)"] }}</p>
-      </div>
-      <div class='metric'>
-        <h5>Quarter</h5>
-        <p>{{ stock["Performance (Quarter)"] }}</p>
-      </div>
-    </div>
-
-    <div class='section'>
-      <h4>50-day</h4>
-      <div class='break'></div>
-      <div class='metric'>
-        <h5>Low</h5>
-        <p>{{ stock["50-Day Low"] }}</p>
-      </div>
-      <div class='metric'>
-        <h5>High</h5>
-        <p>{{ stock["50-Day High"] }}</p>
-      </div>
-      <div class='metric'>
-        <h5>SMA</h5>
-        <p>{{ stock["50-Day Simple Moving Average"] }}</p>
-      </div>
-    </div>
-
-  </div>
-</a>
-
-<a class='stock'>
-  <h3>T</h3>
-  <p>Financial</p>
-</a>
+  </a>
+</div>

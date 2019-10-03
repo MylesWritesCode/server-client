@@ -7,8 +7,14 @@ import { DataService } from '@app/services/data.service';
   styleUrls: ['./all-stocks.component.scss']
 })
 export class AllStocksComponent implements OnInit {
+  private initialItemsShowed: number = 5;
+  private itemsToLoad: number = 5;
+
   public stocks;
-  selectedStock: string;
+  public selectedStock: string;
+  public itemsToShow: any;
+  public isFullListDisplayed: boolean = false;
+
 
   constructor(private dataService: DataService) { }
 
@@ -29,7 +35,10 @@ export class AllStocksComponent implements OnInit {
     this.dataService.getAllStocks().subscribe(
       data => { this.stocks = data['Stocks']; },
       err => console.error(err),
-      () => console.log(this.stocks)
+      () => {
+        console.log("Stocks loaded!");
+        this.itemsToShow = this.stocks.slice(0, this.initialItemsShowed);
+      }
     );
   }
 
@@ -37,4 +46,12 @@ export class AllStocksComponent implements OnInit {
     this.selectedStock = index;
   }
 
+  onScroll() {
+    if (this.initialItemsShowed <= this.stocks.length) {
+      this.initialItemsShowed += this.itemsToLoad;
+      this.itemsToShow = this.stocks.slice(0, this.initialItemsShowed);
+    } else {
+      this.isFullListDisplayed = true;
+    }
+  }
 }
