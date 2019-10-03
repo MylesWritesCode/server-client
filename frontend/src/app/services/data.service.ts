@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DataService {
   prefix = 'http://localhost:8080/stocks/api/v1.0';
+  api:string;
 
   constructor(private http: HttpClient) { }
 

@@ -6,17 +6,17 @@
   -webkit-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
   -moz-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
   cursor: pointer;
-  font-family: 'Montserrat';
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.stock p, .stock h3, .stock h4, .stock h5 {
+.stock p, .stock h3, .stock h4, .stock h5, .overflow-loading h3 {
   display: flex;
   padding: 0;
   margin: 1.5rem 0;
   justify-content: center;
   align-items: center;
+  font-family: 'Montserrat';
   text-align: center;
 }
 
@@ -29,6 +29,7 @@ hr {
   height: 0;
   flex: 1 0 100%;
   margin: 0;
+  border: 0.5px dashed darkgrey;
 }
 
 .section {
@@ -49,4 +50,21 @@ hr {
   display: contents;
   width: 100%;
   flex: 1 0 100%;
+}
+
+.results {
+  height: calc(100% - 61px);
+  // overflow: hidden;
+}
+
+.overflow-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  margin: 0;
+  padding: 10rem;
+  box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
 }

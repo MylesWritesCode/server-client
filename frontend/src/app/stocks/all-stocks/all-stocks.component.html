@@ -1,12 +1,13 @@
 <h2 class='page-header'>All Stocks</h2>
 <div class="results" infiniteScroll
      [infiniteScrollDistance]="2"
-     [infiniteScrollThrottle]="50"
+     [infiniteScrollThrottle]="150"
      (scrolled)="onScroll()"
      [infiniteScrollDisabled]="isFullListDisplayed"
-     [scrollWindow]="false">
+     [scrollWindow]="true"
+     [alwaysCallback]="true">
   <a class='stock'
-    *ngFor="let stock of stocks"
+    *ngFor="let stock of itemsToShow"
     (click)="show('show_' + stock.Ticker)">
     <h3>{{ stock.Ticker }}</h3>
     <p>{{ stock.Sector }}</p>
@@ -64,7 +65,9 @@
           <p>{{ stock["50-Day Simple Moving Average"] }}</p>
         </div>
       </div>
-
     </div>
   </a>
-</div>
+  <div class="overflow-loading" *ngIf="!isFullListDisplayed">
+    <h3>Loading more stocks...</h3>
+  </div>
+</div>  <!-- infinite-scroll div END -->
