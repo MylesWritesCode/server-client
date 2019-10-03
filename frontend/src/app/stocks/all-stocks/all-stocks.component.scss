@@ -1,6 +1,6 @@
 .stock {
   display: flex;
-  padding: 0rem 2rem;
+  // padding: 0rem 2rem;
   margin: 0.5rem 0;
   box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
   -webkit-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
@@ -13,14 +13,14 @@
 .stock p, .stock h3, .stock h4, .stock h5, .overflow-loading h3 {
   display: flex;
   padding: 0;
-  margin: 1.5rem 0;
+  margin: 1rem;
   justify-content: center;
   align-items: center;
   font-family: 'Montserrat';
   text-align: center;
 }
 
-.stock h4, .stock h5, .stock p {
+.stock h4, .stock h5 {
   margin: 0.5rem;
 }
 
@@ -36,6 +36,12 @@ hr {
   display: flex;
   flex: 1 0 100%;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.section .content {
+  margin: 1rem;
+  flex: 1 0 80%;
 }
 
 .metric {
@@ -46,10 +52,24 @@ hr {
 }
 
 .hidden {
-  // display: none;
-  display: contents;
+  display: flex;
   width: 100%;
   flex: 1 0 100%;
+  flex-wrap: wrap;
+}
+
+.btn-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1.5rem 1.5rem 0;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  background-color: darkslateblue;
+  color: white;
+  font-family: 'Montserrat';
 }
 
 .results {
@@ -68,3 +88,4 @@ hr {
   -webkit-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
   -moz-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
 }
+
