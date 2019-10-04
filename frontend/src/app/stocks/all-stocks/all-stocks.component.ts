@@ -19,33 +19,21 @@ export class AllStocksComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    if (!this.stocks) {
-      this.getStocks();
-    }
+    // if (!this.stocks) {
+    //   this.getStocks();
+    // }
+    console.log('trying to get stocks from service');
+    this.getStocks();
+    console.log('finished trying to get stocks');
+    console.log(this.stocks);
   }
 
   // Adding this to a separate method, instead of just adding this whole block
   // into ngOnInit(), because I want to be able to call this at other times
   // besides on init. For example, if a stock is added, this could potentially
   // be a way  to reload all stocks.
-  getStocks() {
-    // NOTE: Stocks is the hardcoded return from the API. There's probably a
-    //       better way to do this dynamically, but I know that I sent one
-    //       large JSON package with the key 'Stocks' and value of more objects.
-
-    // NOTE: (update) Rather than having the stocks loaded in the data service,
-    //       I'm going to load it here when the user loads the all stocks
-    //       component. One benefit is that we don't load all the data
-    //       immediately, but it's a little slower when users load the all
-    //       stocks component.
-    this.dataService.getAllStocks().subscribe(
-      data => { this.stocks = data['Stocks']; },
-      err => console.error(err),
-      () => {
-        console.log("Stocks loaded!");
-        this.itemsToShow = this.stocks.slice(0, this.initialItemsShowed);
-      }
-    );
+  public getStocks() {
+    this.stocks = this.dataService.getAllStocks();
   }
 
   show(index) {
