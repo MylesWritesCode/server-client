@@ -31,12 +31,6 @@ export class AllStocksComponent implements OnInit {
     this.dataService.getAllStocks().subscribe(
       data => {
         this.stocks = data['Stocks'];
-        // NOTE: This seems backwards; we should be setting this.stocks from
-        //       dataService.stocks, but I don't want to call the database
-        //       twice. With this setup, the data goes:
-        //           component -> service -> db -> component -> service
-        //       Ideally, I want the data to go:
-        //          component -> service -> db -> *service* -> *component*
         this.dataService.stocks = this.stocks;
       },
       err => console.error(err),

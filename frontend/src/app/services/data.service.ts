@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, observeOn } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +18,7 @@ export class DataService {
   //       better way to do this dynamically, but I know that I sent one
   //       large JSON package with the key 'Stocks' and value of more objects.
 
-  public getAllStocks() {
-    this.http.get(this.prefix + '/allStocks').subscribe(
-      data => {
-        this.stocks = data['Stocks'];
-        console.log('stocks loaded into service');
-      },
-      err => console.error(err),
-      () => {
-        // console.log(this.stocks);
-        return this.stocks;
-      }
-    );
+  public getAllStocks(): Observable<any> {
+    return this.http.get(this.prefix + '/allStocks').pipe();
   }
 }
