@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, observeOn } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +18,16 @@ export class DataService {
   //       large JSON package with the key 'Stocks' and value of more objects.
 
   public getAllStocks() {
-    return this.http.get(this.prefix + '/allStocks');
+    this.http.get(this.prefix + '/allStocks').subscribe(
+      data => {
+        this.stocks = data['Stocks'];
+        console.log('stocks loaded into service');
+      },
+      err => console.error(err),
+      () => {
+        // console.log(this.stocks);
+        return this.stocks;
+      }
+    );
   }
 }

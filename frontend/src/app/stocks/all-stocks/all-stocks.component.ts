@@ -22,9 +22,12 @@ export class AllStocksComponent implements OnInit {
     // if (!this.stocks) {
     //   this.getStocks();
     // }
-    console.log('trying to get stocks from service');
-    this.getStocks();
-    console.log('finished trying to get stocks');
+    console.log('trying to get stocks from service...');
+
+    this.stocks = this.getStocks();
+
+    console.log('...finished trying to get stocks');
+
     console.log(this.stocks);
   }
 
@@ -32,14 +35,9 @@ export class AllStocksComponent implements OnInit {
   // into ngOnInit(), because I want to be able to call this at other times
   // besides on init. For example, if a stock is added, this could potentially
   // be a way  to reload all stocks.
-  public getStocks() {
-    this.dataService.getAllStocks().subscribe(
-      data => this.stocks = data['Stocks'],
-      err => console.error(err),
-      () => {
-        this.itemsToShow = this.stocks.slice(0, this.initialItemsShowed);
-      }
-    );
+  private async getStocks() {
+    await this.dataService.getAllStocks();
+    this.stocks = this.dataService.stocks;
   }
 
   show(index) {
