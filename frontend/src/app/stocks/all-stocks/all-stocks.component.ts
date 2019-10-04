@@ -33,7 +33,13 @@ export class AllStocksComponent implements OnInit {
   // besides on init. For example, if a stock is added, this could potentially
   // be a way  to reload all stocks.
   public getStocks() {
-    this.stocks = this.dataService.getAllStocks();
+    this.dataService.getAllStocks().subscribe(
+      data => this.stocks = data['Stocks'],
+      err => console.error(err),
+      () => {
+        this.itemsToShow = this.stocks.slice(0, this.initialItemsShowed);
+      }
+    );
   }
 
   show(index) {
