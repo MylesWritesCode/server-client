@@ -1,5 +1,6 @@
 /*
-  This service will be the primary contact for the api.
+  ApiService:
+    This service will basically be an abstract generic class to contact the API.
 */
 
 import { Injectable } from '@angular/core';

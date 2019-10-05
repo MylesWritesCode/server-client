@@ -6,6 +6,7 @@ import { DataService } from '@app/services/data.service';
   templateUrl: './all-stocks.component.html',
   styleUrls: ['./all-stocks.component.scss']
 })
+
 export class AllStocksComponent implements OnInit {
   private initialItemsShowed: number = 10;
   private itemsToLoad: number = 10;

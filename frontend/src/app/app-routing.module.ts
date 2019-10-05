@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { AllStocksComponent } from './stocks/all-stocks/all-stocks.component';
+
+import { AllStocksComponent } from '@app/stocks/all-stocks/all-stocks.component';
+import { StockComponent } from '@app/stocks/stock/stock.component';
 
 const routes: Routes = [
-  { path: 'all-stocks', component: AllStocksComponent }
+  { path: 'all-stocks', component: AllStocksComponent },
+  { path: 'stocks/:id', component: StockComponent }
 ];
 
 @NgModule({
