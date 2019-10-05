@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // Services
-import { DataService } from '@app/services/data.service';
+import { DataService } from '@services/data.service';
 
 // Modules
 import { SharedModule } from '@shared/shared.module';

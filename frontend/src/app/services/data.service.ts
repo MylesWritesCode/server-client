@@ -18,7 +18,8 @@ export class DataService {
   private prefix = 'http://localhost:8080/stocks/api/v1.0';
   private api: string;
 
-  public stocks: object[];
+  // public stocks: object[];
+  public selectedStock: string;
 
   constructor(private apiService: ApiService) { }
 
@@ -35,6 +36,7 @@ export class DataService {
   }
 
   public get(slug): Observable<any> {
+    this.selectedStock = slug;
     return this.apiService.get('/getStock/' + slug);
   }
 }

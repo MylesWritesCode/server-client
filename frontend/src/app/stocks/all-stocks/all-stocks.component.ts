@@ -32,7 +32,7 @@ export class AllStocksComponent implements OnInit {
     this.dataService.getAllStocks().subscribe(
       data => {
         this.stocks = data['Stocks'];
-        this.dataService.stocks = this.stocks;
+        // this.dataService.stocks = this.stocks;
       },
       err => console.error(err),
       () => {
