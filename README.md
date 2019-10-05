@@ -2,13 +2,14 @@
 This project will use a pre-existing backend and attempt to create the
 client-side frontend for users. In total, three servers will be running:
 1. MongoDB server
-2. Python3 pymongo server (API for DB)
+2. Python3 PyMongo server (API for DB)
 3. Angular server (client for frontend)
 
-# Server Instructions
+# Backend Instructions
 ### Requirements
 - Python3 (3.7.3 used in development)
-- pymongo
+- PyMongo
+- Bottle
 - MongoDB installed
 * * *
 The datastore server connects to MongoDB that is already filled with data. To
@@ -20,13 +21,21 @@ cd backend/data
 // The following line will import our stock data into MongoDB.
 mongoimport --db market --collection stocks stocks.json
 
-// Ensure pymongo is installed
+// Install dependencies:
 pip install pymongo
+pip install bottle
 cd ../stocks/server
+
+// On Windows, start Mongo server:
+net start MongoDB
+
+// On Linux (used in development via WSL):
+sudo service mongod start
+
 python3 server.py
 ```
 
-Once you're done with this, MongoDB should have all the data, and our backend
+Once you're done with this, MongoDB should have all the data, and the backend
 server should be running. 
 
 
