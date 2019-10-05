@@ -27,7 +27,7 @@ export class StockComponent implements OnInit {
     this.dataService.get(ticker).subscribe(
       data => { this.stock = data; },
       err => console.error(err),
-      () => { this.isStockLoaded = true; console.log(this.stock); }
+      () => { this.isStockLoaded = true; }
     );
   }
 }

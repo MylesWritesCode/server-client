@@ -8,6 +8,12 @@
   cursor: pointer;
   justify-content: space-between;
   flex-wrap: wrap;
+  transition: all 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+}
+
+.stock:hover {
+  color: white;
+  background-color: darkslateblue;
 }
 
 .stock p, .stock h3, .stock h4, .stock h5, .overflow-loading h3 {
@@ -51,12 +57,19 @@ hr {
   flex-wrap: wrap;
 }
 
+.middle {
+  background-color: aliceblue;
+  color: black;
+}
+
 .hidden {
   display: flex;
   width: 100%;
   flex: 1 0 100%;
   flex-wrap: wrap;
   cursor: pointer;
+  background-color: white;
+  color: black;
 }
 
 .btn-more {
@@ -72,6 +85,11 @@ hr {
   color: white;
   font-family: 'Montserrat';
   text-decoration: none;
+  transition: all 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+}
+
+.btn-more:hover {
+  background-color: rgb(124, 114, 190);
 }
 
 .results {

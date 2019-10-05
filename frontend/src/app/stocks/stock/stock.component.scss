@@ -2,7 +2,7 @@ hr {
   display: flex;
   flex: 1 0 100%;
   border: 1px dashed darkgrey;
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 
 .container {
@@ -25,7 +25,7 @@ hr {
 
 .section-header {
   flex: 1 0 100%;
-  margin: 1rem 0 !important;
+  margin: 0 0 1rem 0 !important;
   text-align: left;
 }
 
@@ -39,6 +39,12 @@ hr {
   -webkit-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
   -moz-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
   padding: 1rem 0.5rem;
+  transition: all 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+}
+
+.metric:hover {
+  background-color: darkslateblue;
+  color: white;
 }
 
 .metric p, .metric h4 {
