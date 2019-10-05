@@ -56,4 +56,8 @@ export class AllStocksComponent implements OnInit {
       this.isFullListDisplayed = true;
     }
   }
+
+  setTicker(ticker: string) {
+    this.dataService.selectedStock = ticker;
+  }
 }

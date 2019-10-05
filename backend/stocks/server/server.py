@@ -69,17 +69,17 @@ def create(symbol = ""):
     """
     status = 200
     try:
-        res = { "Ticker": symbol }
+        data = { "Ticker": symbol }
         # data = request.json
 
         # This needs to be done. I need to convert the date from UNIX Epoch
         # to ISODate.
         # req = transform_document(request.json)
-        req = request.json
+        data = request.json
         transform_document(req)
 
         # Neato, I found this .update() method that'll join my data:
-        res.update(req)
+        data.update(req)
         
         result = api.insert_documents(res)
 
@@ -88,9 +88,10 @@ def create(symbol = ""):
 
         else:
             status = 400
-            res = { "Error 400": "Document wasn't inserted!" }
+            data = { "Error 400": "Document wasn't inserted!" }
 
-        return bottle.HTTPResponse(status = status, body = get_json(res))
+        res = bottle.HTTPResponse(status = status, body = get_json(data))
+        return set_headers(res)
 
     except Exception as e:
         print_error(e)
@@ -110,14 +111,16 @@ def read(symbol = ""):
     try:
         # read_document sends the whole cursor, let's just retrieve the first
         # document in the queue for now.
-        res = next(api.read_document({ "Ticker": symbol }))
+        data = next(api.read_document({ "Ticker": symbol }))
 
         # read_document returns a hardcoded error if a document isn't found,
         # so I'll look for it here:
-        if "Error" in res:
+        if "Error" in data:
             status = 404
 
-        return bottle.HTTPResponse(status = status, body = get_json(res))
+
+        res = bottle.HTTPResponse(status = status, body = get_json(data))
+        return set_headers(res)
     
     except Exception as e:
         print_error(e)

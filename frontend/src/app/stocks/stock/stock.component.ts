@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '@services/data.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-stock',
@@ -18,17 +19,14 @@ export class StockComponent implements OnInit {
 
   ngOnInit() {
     let ticker = this.route.snapshot.paramMap.get('ticker');
-    console.log(ticker);
     this.getStock(ticker);
-
-    console.log(this.stockData);
   }
 
   private getStock(ticker: string) {
     this.dataService.get(ticker).subscribe(
       data => { this.stockData = data; },
       err => console.error(err),
-      () => {}
+      () => { console.log(this.stockData) }
     );
   }
 }
