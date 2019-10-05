@@ -25,7 +25,7 @@ hr {
 
 .section-header {
   flex: 1 0 100%;
-  margin: 1rem 0;
+  margin: 1rem 0 !important;
   text-align: left;
 }
 
@@ -34,7 +34,7 @@ hr {
   flex-wrap: wrap;
   flex: 1 0 20%;
   align-items: flex-start;
-  margin: 1rem 0.25rem;
+  margin: 0.5rem 0.25rem;
   box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
   -webkit-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
   -moz-box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
