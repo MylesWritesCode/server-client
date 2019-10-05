@@ -20,13 +20,6 @@ print("Server is running...\n")
 # app = Bottle()
 app = bottle.app()
 
-@bottle.hook('after_request')
-def enable_cors():
-    # Add headers to responses to enable CORS
-    response.headers['Access-Control-Allow-Origin'] = _allow_origin
-    response.headers['Access-Control-Allow-Methods'] = _allow_methods
-    response.headers['Access-Control-Allow-Headers'] = _allow_headers
-
 def set_headers(response):
     response.set_header('Access-Control-Allow-Origin', _allow_origin)
     response.set_header('Access-Control-Allow-Methods', _allow_methods)

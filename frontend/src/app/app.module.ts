@@ -14,9 +14,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Components
 import { AllStocksComponent } from './stocks/all-stocks/all-stocks.component';
+import { StockComponent } from './stocks/stock/stock.component';
 
 @NgModule({
-  declarations: [ AppComponent, AllStocksComponent ],
+  declarations: [ AppComponent, AllStocksComponent, StockComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
