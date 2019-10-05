@@ -6,7 +6,11 @@ import { StockComponent } from '@app/stocks/stock/stock.component';
 
 const routes: Routes = [
   { path: 'all-stocks', component: AllStocksComponent },
-  { path: 'stock/:ticker', component: StockComponent }
+  {
+    path: 'stock',
+    component: StockComponent,
+    children: [ { path: ':ticker', component: StockComponent } ]
+  }
 ];
 
 @NgModule({
