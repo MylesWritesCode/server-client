@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./stock.component.scss']
 })
 export class StockComponent implements OnInit {
-  private stockData;
+  private isStockLoaded = false;
+  public stock;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,9 +25,9 @@ export class StockComponent implements OnInit {
 
   private getStock(ticker: string) {
     this.dataService.get(ticker).subscribe(
-      data => { this.stockData = data; },
+      data => { this.stock = data; },
       err => console.error(err),
-      () => { console.log(this.stockData) }
+      () => { this.isStockLoaded = true; console.log(this.stock); }
     );
   }
 }

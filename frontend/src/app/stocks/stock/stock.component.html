@@ -1,3 +1,137 @@
-<p>
-  stock works!
-</p>
+<div *ngIf="stock" class='container'>
+  <h2 class='page-header'>Ticker: {{ stock.Ticker }}</h2>
+  <p>Sector: {{ stock.Sector }}</p>
+  <hr>
+  <div class="section">
+    <h3 class="section-header">Overview</h3>
+    <div class="metric">
+      <h4>Company</h4>
+      <p>{{ stock.Company }}</p>
+    </div>
+    <div class="break"></div>
+    <div class="metric">
+      <h4>Country</h4>
+      <p>{{ stock.Country }}</p>
+    </div>
+    <div class="metric">
+      <h4>Industry</h4>
+      <p>{{ stock.Industry }}</p>
+    </div>
+    <div class="metric">
+      <h4>Current Price</h4>
+      <p>{{ stock.Price | currency }}</p>
+    </div>
+  </div>  <!-- Overview section END -->
+  <hr>
+  <div class="section">
+    <h3 class="section-header">Technical</h3>
+    <div class="metric">
+      <h4>20-Day SMA</h4>
+      <p>{{ stock["20-Day Simple Moving Average"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>50-Day High</h4>
+      <p>{{ stock["50-Day High"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>50-Day Low</h4>
+      <p>{{ stock["50-Day Low"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>50-Day SMA</h4>
+      <p>{{ stock["50-Day Simple Moving Average"] }}</p>
+    </div>
+
+    <div class="metric">
+      <h4>52-Week High</h4>
+      <p>{{ stock["52-Week High"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>52-Week Low</h4>
+      <p>{{ stock["52-Week Low"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>200-Day SMA</h4>
+      <p>{{ stock["200-Day Simple Moving Average"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Average True Range</h4>
+      <p>{{ stock["Average True Range"] }}</p>
+    </div>
+
+    <div class="metric">
+      <h4>Average Volume</h4>
+      <p>{{ stock["Average Volume"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Change</h4>
+      <p>{{ stock["Change"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Change from Open</h4>
+      <p>{{ stock["Change from Open"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Dividend Yield</h4>
+      <p>{{ stock["Dividend Yield"] }}</p>
+    </div>
+
+    <div class="metric">
+      <h4>Gap</h4>
+      <p>{{ stock["Gap"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Relative Strength Index (14)</h4>
+      <p>{{ stock["Relative Strength Index (14)"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Relative Volume</h4>
+      <p>{{ stock["Relative Volume"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Short Ratio</h4>
+      <p>{{ stock["Short Ratio"] }}</p>
+    </div>
+  </div>  <!-- Technical section END -->
+  <hr>
+    <div class="section">
+    <h3 class="section-header">Performance</h3>
+    <div class="metric">
+      <h4>Half Year</h4>
+      <p>{{ stock["Performance (Half Year)"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Month</h4>
+      <p>{{ stock["Performance (Month)"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Quarter</h4>
+      <p>{{ stock["Performance (Quarter)"] }}</p>
+    </div>
+    <div class="break"></div>
+    <div class="metric">
+      <h4>Week</h4>
+      <p>{{ stock["Performance (Week)"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>YTD</h4>
+      <p>{{ stock["Performance (YTD)"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Year</h4>
+      <p>{{ stock["Performance (Year)"] }}</p>
+    </div>
+  </div>  <!-- Performance section END -->
+  <hr>
+  <div class="section">
+    <h3 class="section-header">Volatility</h3>
+    <div class="metric">
+      <h4>Month</h4>
+      <p>{{ stock["Volatility (Month)"] }}</p>
+    </div>
+    <div class="metric">
+      <h4>Week</h4>
+      <p>{{ stock["Volatility (Week)"] }}</p>
+    </div>
+  </div>  <!-- Volatility section END -->
+</div>
