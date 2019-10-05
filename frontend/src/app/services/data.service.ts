@@ -10,7 +10,7 @@ export class DataService {
   private prefix = 'http://localhost:8080/stocks/api/v1.0';
   private api: string;
 
-  public stocks: object;
+  public stocks: object[];
 
   constructor(private http: HttpClient) { }
 
